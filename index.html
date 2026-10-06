@@ -1,0 +1,1248 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>你有多讨好型？10题测测你的讨好指数</title>
+
+    <meta name="description"
+          content="10道题测测你的讨好倾向，看看你是不是习惯照顾别人，却总是忽略自己。">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: #f8f5f1;
+            color: #333;
+            font-family:
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                "PingFang SC",
+                "Hiragino Sans GB",
+                "Microsoft YaHei",
+                sans-serif;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 620px;
+            margin: auto;
+            padding: 16px 14px 45px;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 22px;
+            padding: 26px 20px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* =====================
+           首页
+        ===================== */
+
+        .intro {
+            text-align: center;
+        }
+
+        .icon {
+            font-size: 56px;
+            margin: 8px 0 15px;
+        }
+
+        h1 {
+            font-size: 27px;
+            line-height: 1.4;
+            margin: 0 0 14px;
+        }
+
+        .subtitle {
+            color: #777;
+            font-size: 15px;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+
+        .highlight {
+            background: #faf6ef;
+            border-radius: 14px;
+            padding: 16px;
+            text-align: left;
+            line-height: 1.8;
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 24px;
+        }
+
+        .highlight strong {
+            color: #333;
+        }
+
+        .start-btn,
+        .next-btn,
+        .restart-btn {
+            width: 100%;
+            border: 0;
+            border-radius: 13px;
+            padding: 15px;
+            background: #333;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .start-btn:hover,
+        .next-btn:hover,
+        .restart-btn:hover {
+            opacity: 0.88;
+            transform: translateY(-1px);
+        }
+
+        .small-note {
+            margin-top: 16px;
+            color: #aaa;
+            font-size: 12px;
+            line-height: 1.7;
+        }
+
+        /* =====================
+           测试页
+        ===================== */
+
+        .progress-wrap {
+            margin-bottom: 25px;
+        }
+
+        .progress-top {
+            display: flex;
+            justify-content: space-between;
+            color: #999;
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+
+        .progress {
+            height: 7px;
+            background: #eee;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            width: 0;
+            height: 100%;
+            background: #333;
+            transition: width .3s ease;
+        }
+
+        .question {
+            font-size: 20px;
+            font-weight: 600;
+            line-height: 1.65;
+            margin-bottom: 22px;
+        }
+
+        .option {
+            width: 100%;
+            border: 1px solid #e8e8e8;
+            background: #fafafa;
+            border-radius: 13px;
+            padding: 15px 14px;
+            text-align: left;
+            margin-bottom: 11px;
+            font-size: 15px;
+            line-height: 1.55;
+            color: #333;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .option:hover {
+            background: #f3f1ee;
+        }
+
+        .option.selected {
+            background: #f1ede6;
+            border-color: #333;
+        }
+
+        .next-btn {
+            margin-top: 8px;
+        }
+
+        .next-btn:disabled {
+            opacity: .35;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* =====================
+           结果页
+        ===================== */
+
+        .result {
+            text-align: center;
+        }
+
+        .result-icon {
+            font-size: 60px;
+            margin-bottom: 5px;
+        }
+
+        .score {
+            font-size: 46px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .score-label {
+            color: #999;
+            font-size: 13px;
+            margin: 4px 0 22px;
+        }
+
+        .result-title {
+            font-size: 25px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .result-desc {
+            background: #faf7f2;
+            padding: 18px;
+            border-radius: 15px;
+            text-align: left;
+            font-size: 15px;
+            line-height: 1.9;
+            color: #555;
+            margin-bottom: 24px;
+        }
+
+        .sign-box {
+            text-align: left;
+            margin-bottom: 24px;
+        }
+
+        .sign-box h3,
+        .advice-box h3 {
+            font-size: 17px;
+            margin: 0 0 12px;
+        }
+
+        .sign-box ul,
+        .advice-box ul {
+            margin: 0;
+            padding-left: 21px;
+            color: #555;
+            font-size: 14px;
+            line-height: 1.9;
+        }
+
+        .share-box {
+            margin-top: 22px;
+            padding: 15px;
+            border-radius: 13px;
+            background: #f6f3ef;
+            color: #777;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        .footer {
+            text-align: center;
+            color: #aaa;
+            font-size: 12px;
+            line-height: 1.7;
+            margin-top: 18px;
+        }
+
+        @media (max-width: 480px) {
+
+            .card {
+                padding: 23px 17px;
+                border-radius: 19px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .question {
+                font-size: 18px;
+            }
+
+        }
+    </style>
+</head>
+
+
+<body>
+
+<div class="container">
+
+    <!-- =========================
+         首页
+    ========================== -->
+
+    <div id="startPage" class="card">
+
+        <div class="intro">
+
+            <div class="icon">🌿</div>
+
+            <h1>
+                你有多讨好型？
+            </h1>
+
+            <div class="subtitle">
+                10道题，测测你在人际关系中的<br>
+                “讨好倾向”到底有多高。
+            </div>
+
+            <div class="highlight">
+
+                <strong>你有没有过这种时候？</strong>
+
+                <br><br>
+
+                明明不想答应，却还是说“好吧”。
+
+                <br>
+
+                别人一不高兴，就忍不住反思是不是自己做错了。
+
+                <br>
+
+                明明已经很累，却还是担心拒绝别人会让对方失望。
+
+                <br><br>
+
+                如果这些话有点像你，可以测一下。
+
+            </div>
+
+            <button
+                class="start-btn"
+                onclick="startTest()">
+
+                开始测试
+
+            </button>
+
+            <div class="small-note">
+                共10题 · 约2分钟<br>
+                请根据你平时最真实的状态选择
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         测试页面
+    ========================== -->
+
+    <div id="testPage" class="card hidden">
+
+        <div class="progress-wrap">
+
+            <div class="progress-top">
+
+                <span id="questionNumber">
+                    第1 / 10题
+                </span>
+
+                <span id="progressPercent">
+                    10%
+                </span>
+
+            </div>
+
+            <div class="progress">
+
+                <div
+                    id="progressBar"
+                    class="progress-bar">
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div
+            id="questionText"
+            class="question">
+        </div>
+
+
+        <div id="options"></div>
+
+
+        <button
+            id="nextBtn"
+            class="next-btn"
+            onclick="nextQuestion()"
+            disabled>
+
+            下一题
+
+        </button>
+
+    </div>
+
+
+    <!-- =========================
+         结果页面
+    ========================== -->
+
+    <div id="resultPage" class="card hidden">
+
+        <div class="result">
+
+            <div
+                id="resultIcon"
+                class="result-icon">
+                🌿
+            </div>
+
+            <div
+                id="score"
+                class="score">
+                0
+            </div>
+
+            <div class="score-label">
+                你的讨好指数
+            </div>
+
+            <div
+                id="resultTitle"
+                class="result-title">
+            </div>
+
+            <div
+                id="resultDesc"
+                class="result-desc">
+            </div>
+
+
+            <div class="sign-box">
+
+                <h3>
+                    你可能有这些表现
+                </h3>
+
+                <ul id="signList"></ul>
+
+            </div>
+
+
+            <div class="advice-box">
+
+                <h3>
+                    可以试试这样做
+                </h3>
+
+                <ul id="adviceList"></ul>
+
+            </div>
+
+
+            <div class="share-box">
+
+                💬 测完可以把你的结果截图保存下来。<br>
+                你不需要为了证明自己是“好人”，
+                一直委屈自己。
+
+            </div>
+
+
+            <button
+                class="restart-btn"
+                onclick="restartTest()">
+
+                再测一次
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer">
+
+        本测试仅用于自我探索与娱乐，
+        不构成心理诊断或医学建议。
+
+        <br>
+
+        © 2026 趣味测试
+
+    </div>
+
+</div>
+
+
+<script>
+
+/*
+====================================================
+测试数据
+====================================================
+
+每道题：
+
+0分 = 基本不会出现
+1分 = 偶尔
+2分 = 经常
+3分 = 非常符合
+
+总分最高30分。
+*/
+
+
+const questions = [
+
+    {
+        question:
+            "别人临时找你帮忙，但你其实已经很累了，你会？",
+
+        options: [
+            {
+                text: "直接说今天不方便",
+                score: 0
+            },
+            {
+                text: "如果不是特别麻烦，可能会帮一下",
+                score: 1
+            },
+            {
+                text: "虽然不想，但大概率还是会答应",
+                score: 2
+            },
+            {
+                text: "即使很累，也不好意思拒绝",
+                score: 3
+            }
+        ]
+    },
+
+
+    {
+        question:
+            "当别人因为你的拒绝而表现得不高兴时，你会？",
+
+        options: [
+            {
+                text: "理解对方，但不会因此改变决定",
+                score: 0
+            },
+            {
+                text: "会有一点不舒服",
+                score: 1
+            },
+            {
+                text: "开始怀疑自己是不是太过分了",
+                score: 2
+            },
+            {
+                text: "马上想办法让对方开心起来",
+                score: 3
+            }
+        ]
+    },
+
+
+    {
+        question:
+            "你和别人发生矛盾后，通常是谁先主动和好？",
+
+        options: [
+            {
+                text: "谁的问题谁解决，不一定非要我主动",
+                score: 0
+            },
+            {
+                text: "关系比较重要的话，我可能会主动",
+                score: 1
+            },
+            {
+                text: "大多数时候都是我先低头",
+                score: 2
+            },
+            {
+                text: "我非常害怕关系一直僵着",
+                score: 3
+            }
+        ]
+    },
+
+
+    {
+        question:
+            "你不喜欢别人提出的意见，但又怕让对方失望，你会？",
+
+        options: [
+            {
+                text: "直接说自己的想法",
+                score: 0
+            },
+            {
+                text: "委婉地表达不同意见",
+                score: 1
+            },
+            {
+                text: "先答应，之后再想办法",
+                score: 2
+            },
+            {
+                text: "基本不会表达反对",
+                score: 3
+            }
+        ]
+    },
+
+
+    {
+        question:
+            "别人对你态度突然变冷淡，你第一反应是？",
+
+        options: [
+            {
+                text: "可能只是对方自己的事情",
+                score: 0
+            },
+            {
+                text: "会想想发生了什么",
+                score: 1
+            },
+            {
+                text: "会反思是不是自己说错了什么",
+                score: 2
+            },
+            {
+                text: "会非常焦虑，觉得一定是自己做错了",
+                score: 3
+            }
+        ]
+    },
+
+
+    {
+        question:
+            "你有没有为了照顾别人，而取消自己的计划？",
+
+        options: [
+            {
+                text: "很少，我会优先考虑自己的安排",
+                score: 0
+            },
+            {
+                text: "偶尔会",
+                score: 1
+            },
+            {
+                text: "经常会",
+                score: 2
+            },
+            {
+                text: "别人需要我时，我很难顾自己",
+                score: 3
+            }
+        ]
+    },
+
+
+    {
+        question:
+            "别人夸你“懂事”“好说话”时，你通常是什么感觉？",
+
+        options: [
+            {
+                text: "挺开心的，但我知道自己也可以拒绝",
+                score: 0
+            },
+            {
+                text: "会觉得这是对我的认可",
+                score: 1
+            },
+            {
+                text: "我确实很害怕别人觉得我不懂事",
+                score: 2
+            },
+            {
+                text: "“懂事”几乎成了我不敢拒绝别人的理由",
+                score: 3
+            }
+        ]
+    },
+
+
+    {
+        question:
+            "你很不开心，但别人问你“怎么了”，你最可能回答？",
+
+        options: [
+            {
+                text: "直接告诉对方自己的感受",
+                score: 0
+            },
+            {
+                text: "看关系决定说多少",
+                score: 1
+            },
+            {
+                text: "通常会说“没事”",
+                score: 2
+            },
+            {
+                text: "即使很难受，也会先照顾对方的情绪",
+                score: 3
+            }
+        ]
+    },
+
+
+    {
+        question:
+            "你答应别人之后才发现自己根本不想做，你会？",
+
+        options: [
+            {
+                text: "重新沟通，说明自己的情况",
+                score: 0
+            },
+            {
+                text: "如果问题不大，就做完",
+                score: 1
+            },
+            {
+                text: "一边委屈自己，一边把事情做完",
+                score: 2
+            },
+            {
+                text: "觉得自己既然答应了，就没有资格反悔",
+                score: 3
+            }
+        ]
+    },
+
+
+    {
+        question:
+            "你最害怕别人怎么看你？",
+
+        options: [
+            {
+                text: "我不太会因为别人评价改变自己",
+                score: 0
+            },
+            {
+                text: "重要的人怎么想，我会在意",
+                score: 1
+            },
+            {
+                text: "我很怕别人觉得我自私、不好相处",
+                score: 2
+            },
+            {
+                text: "我最害怕的就是让别人失望",
+                score: 3
+            }
+        ]
+    }
+
+];
+
+
+let currentQuestion = 0;
+
+let totalScore = 0;
+
+let selectedScore = null;
+
+
+/*
+====================================================
+开始测试
+====================================================
+*/
+
+function startTest() {
+
+    currentQuestion = 0;
+
+    totalScore = 0;
+
+    selectedScore = null;
+
+
+    document
+        .getElementById("startPage")
+        .classList.add("hidden");
+
+
+    document
+        .getElementById("resultPage")
+        .classList.add("hidden");
+
+
+    document
+        .getElementById("testPage")
+        .classList.remove("hidden");
+
+
+    showQuestion();
+
+}
+
+
+/*
+====================================================
+显示题目
+====================================================
+*/
+
+function showQuestion() {
+
+    const question =
+        questions[currentQuestion];
+
+
+    selectedScore = null;
+
+
+    const number =
+        currentQuestion + 1;
+
+
+    const percent =
+        Math.round(
+            number / questions.length * 100
+        );
+
+
+    document
+        .getElementById("questionNumber")
+        .innerText =
+        `第 ${number} / ${questions.length} 题`;
+
+
+    document
+        .getElementById("progressPercent")
+        .innerText =
+        `${percent}%`;
+
+
+    document
+        .getElementById("progressBar")
+        .style.width =
+        `${percent}%`;
+
+
+    document
+        .getElementById("questionText")
+        .innerText =
+        question.question;
+
+
+    const optionsContainer =
+        document.getElementById("options");
+
+
+    optionsContainer.innerHTML = "";
+
+
+    question.options.forEach(
+        (option) => {
+
+
+            const button =
+                document.createElement("button");
+
+
+            button.className = "option";
+
+
+            button.innerText =
+                option.text;
+
+
+            button.onclick = function () {
+
+
+                document
+                    .querySelectorAll(".option")
+                    .forEach(btn => {
+
+                        btn.classList.remove(
+                            "selected"
+                        );
+
+                    });
+
+
+                button.classList.add(
+                    "selected"
+                );
+
+
+                selectedScore =
+                    option.score;
+
+
+                document
+                    .getElementById("nextBtn")
+                    .disabled = false;
+
+            };
+
+
+            optionsContainer
+                .appendChild(button);
+
+        }
+    );
+
+
+    const nextBtn =
+        document.getElementById("nextBtn");
+
+
+    nextBtn.disabled = true;
+
+
+    if (
+        currentQuestion ===
+        questions.length - 1
+    ) {
+
+        nextBtn.innerText =
+            "查看我的结果";
+
+    } else {
+
+        nextBtn.innerText =
+            "下一题";
+
+    }
+
+}
+
+
+/*
+====================================================
+下一题
+====================================================
+*/
+
+function nextQuestion() {
+
+    if (selectedScore === null) {
+        return;
+    }
+
+
+    totalScore += selectedScore;
+
+
+    currentQuestion++;
+
+
+    if (
+        currentQuestion >=
+        questions.length
+    ) {
+
+        showResult();
+
+    } else {
+
+        showQuestion();
+
+    }
+
+}
+
+
+/*
+====================================================
+结果
+====================================================
+*/
+
+function showResult() {
+
+    document
+        .getElementById("testPage")
+        .classList.add("hidden");
+
+
+    document
+        .getElementById("resultPage")
+        .classList.remove("hidden");
+
+
+    document
+        .getElementById("score")
+        .innerText =
+        totalScore;
+
+
+    let icon = "";
+
+    let title = "";
+
+    let desc = "";
+
+    let signs = [];
+
+    let advice = [];
+
+
+    /*
+    ==============================
+    0 - 7
+    ==============================
+    */
+
+    if (totalScore <= 7) {
+
+        icon = "🌱";
+
+        title =
+            "你的讨好倾向比较低";
+
+        desc =
+            "你通常能够比较自然地表达自己的想法，" +
+            "也不太会因为别人一时的不高兴，就马上否定自己。" +
+            "你愿意照顾别人的感受，但不会把“让所有人满意”" +
+            "当成自己的责任。";
+
+
+        signs = [
+            "能够比较自然地表达“不想要”",
+            "不会因为别人不高兴就马上自责",
+            "知道帮助别人和讨好别人之间的区别"
+        ];
+
+
+        advice = [
+            "继续保持自己的判断力。",
+            "也允许自己偶尔为了重要的人做出让步。",
+            "真正健康的边界不是冷漠，而是知道自己为什么选择。"
+        ];
+
+    }
+
+
+    /*
+    ==============================
+    8 - 15
+    ==============================
+    */
+
+    else if (totalScore <= 15) {
+
+        icon = "🌿";
+
+        title =
+            "你有一些讨好倾向";
+
+        desc =
+            "你并不是一个完全不会拒绝的人。" +
+            "但面对重要的人、关系冲突或者别人明显失望的时候，" +
+            "你可能会下意识地退让。" +
+            "有时候你嘴上说“没关系”，心里其实已经有一点委屈。";
+
+
+        signs = [
+            "面对熟悉的人比较容易妥协",
+            "有时会因为拒绝别人而产生愧疚",
+            "不太喜欢正面冲突"
+        ];
+
+
+        advice = [
+            "答应别人之前，先给自己几秒钟考虑。",
+            "把“我不想”当成一个可以被认真对待的理由。",
+            "别人失望，不等于你做错了。"
+        ];
+
+    }
+
+
+    /*
+    ==============================
+    16 - 23
+    ==============================
+    */
+
+    else if (totalScore <= 23) {
+
+        icon = "🍃";
+
+        title =
+            "你的讨好倾向比较明显";
+
+        desc =
+            "你很容易优先考虑别人，然后才想到自己。" +
+            "你可能很会照顾别人，也很少给别人添麻烦。" +
+            "但问题是，你自己累不累，往往排在最后。" +
+            "你可能已经习惯了“算了，我来吧”。";
+
+
+        signs = [
+            "很难直接拒绝别人的请求",
+            "容易担心别人对自己的评价",
+            "别人情绪不好时，你容易跟着内耗",
+            "经常把自己的需求放到最后"
+        ];
+
+
+        advice = [
+            "从一个很小的拒绝开始练习。",
+            "不要急着解释自己为什么拒绝。",
+            "问自己：如果不用担心别人失望，我真正想怎么做？"
+        ];
+
+    }
+
+
+    /*
+    ==============================
+    24 - 30
+    ==============================
+    */
+
+    else {
+
+        icon = "🌳";
+
+        title =
+            "你可能已经习惯性地讨好别人";
+
+        desc =
+            "你似乎很习惯先照顾别人，再考虑自己。" +
+            "别人不高兴，你容易觉得是不是自己的问题。" +
+            "别人提出要求，你第一反应可能不是“我愿不愿意”，" +
+            "而是“拒绝以后他会不会不开心”。" +
+            "这并不代表你软弱，而可能意味着你长期把维持关系放在了自己的感受之前。";
+
+
+        signs = [
+            "很难承受别人对自己的失望",
+            "经常下意识地说“没关系”",
+            "即使委屈，也容易选择忍下来",
+            "特别害怕别人觉得自己不好",
+            "很少认真问自己“我到底想不想”"
+        ];
+
+
+        advice = [
+            "开始练习区分：这是我的责任，还是别人的情绪？",
+            "不要把拒绝别人等同于伤害别人。",
+            "允许别人偶尔不满意你。",
+            "每天至少问自己一次：今天有什么事情其实是我不想做的？"
+        ];
+
+    }
+
+
+    document
+        .getElementById("resultIcon")
+        .innerText = icon;
+
+
+    document
+        .getElementById("resultTitle")
+        .innerText = title;
+
+
+    document
+        .getElementById("resultDesc")
+        .innerText = desc;
+
+
+    const signList =
+        document.getElementById("signList");
+
+
+    signList.innerHTML = "";
+
+
+    signs.forEach(item => {
+
+        const li =
+            document.createElement("li");
+
+        li.innerText = item;
+
+        signList.appendChild(li);
+
+    });
+
+
+    const adviceList =
+        document.getElementById("adviceList");
+
+
+    adviceList.innerHTML = "";
+
+
+    advice.forEach(item => {
+
+        const li =
+            document.createElement("li");
+
+        li.innerText = item;
+
+        adviceList.appendChild(li);
+
+    });
+
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+}
+
+
+/*
+====================================================
+重新测试
+====================================================
+*/
+
+function restartTest() {
+
+    document
+        .getElementById("resultPage")
+        .classList.add("hidden");
+
+
+    document
+        .getElementById("startPage")
+        .classList.remove("hidden");
+
+}
+
+</script>
+
+</body>
+
